@@ -1,0 +1,28 @@
+[
+  { op: 'del', text: 'much\n', olno: 0 },
+  { op: 'del', text: 'writing\n', olno: 1 },
+  { op: 'del', text: 'is\n', olno: 2 },
+  { op: 'del_mv', text: 'like\n', nlno: 10, olno: 3 },
+  { op: 'del_mv', text: 'snow,\n', nlno: 12, olno: 4 },
+  { op: 'token', text: 'a\n', nlno: 0, olno: 5 },
+  { op: 'token', text: 'mass\n', nlno: 1, olno: 6 },
+  { op: 'token', text: 'of\n', nlno: 2, olno: 7 },
+  { op: 'del', text: 'long\n', olno: 8 },
+  { op: 'ins', text: 'latin\n', nlno: 3 },
+  { op: 'token', text: 'words\n', nlno: 4, olno: 9 },
+  { op: 'del', text: 'and\n', olno: 10 },
+  { op: 'del', text: 'phrases\n', olno: 11 },
+  { op: 'token', text: 'falls\n', nlno: 5, olno: 12 },
+  { op: 'token', text: 'upon\n', nlno: 6, olno: 13 },
+  { op: 'token', text: 'the\n', nlno: 7, olno: 14 },
+  { op: 'token', text: 'relevant\n', nlno: 8, olno: 15 },
+  { op: 'token', text: 'facts\n', nlno: 9, olno: 16 },
+  { op: 'ins_mv', text: 'like\n', nlno: 10 },
+  { op: 'ins', text: 'soft\n', nlno: 11 },
+  { op: 'ins_mv', text: 'snow,\n', nlno: 12 },
+  { op: 'token', text: 'covering\n', nlno: 13, olno: 17 },
+  { op: 'token', text: 'up\n', nlno: 14, olno: 18 },
+  { op: 'token', text: 'the\n', nlno: 15, olno: 19 },
+  { op: 'token', text: 'details\n', nlno: 16, olno: 20 }
+]
+

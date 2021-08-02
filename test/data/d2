@@ -1,0 +1,14 @@
+    while (i < NA.length || j < OA.length) {
+      if (_object(OA[j]) && j < OA.length) {
+        patch.push({ op: 'del', text: OA[j].l, olno: j });
+        j += 1;
+      }
+      else if (_object(NA[i])) {
+        patch.push({ op: 'ins', text: NA[i].l, nlno: i });
+        i += 1;
+      }
+      else if (_number(NA[i]) && NA[i] < j) { 
+        patch.push({ op: 'ins_mv', text: ol[NA[i]], nlno: i });
+        i += 1;
+      }
+    }

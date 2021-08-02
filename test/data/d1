@@ -1,0 +1,18 @@
+    while (i < NA.length || j < OA.length) {
+      //console.log("LOOP", i, nl[i], NA[i], j, ol[j], OA[j]);
+      if (_object(OA[j]) && j < OA.length) {
+        patch.push({ op: 'del', text: OA[j].l, olno: j });
+        //console.log("J DEL", i, nl[i], j, ol[j]);
+        j += 1;
+      }
+      else if (_object(NA[i])) {
+        patch.push({ op: 'ins', text: NA[i].l, nlno: i });
+        //console.log("I INS", i, nl[i], j, ol[j]);
+        i += 1;
+      }
+      else if (_number(NA[i]) && NA[i] < j) { 
+        patch.push({ op: 'ins_mv', text: ol[NA[i]], nlno: i });
+        //console.log("I INS_MV", i, nl[i], j, ol[j]);
+        i += 1;
+      }
+    }
