@@ -1,5 +1,6 @@
 function diff(o, n) {
 
+  const ctx = 3;
   const boundary = /(?<=\n)/;
 
   const nl = n.split(boundary).filter(x => x);
@@ -70,6 +71,17 @@ function diff(o, n) {
         i += 1;
         j += 1;
       }
+    }
+  }
+
+  let run = 0;
+
+  for (let i = patch.length + ctx - 1; i >= -ctx - 1; i--) {
+    if ((!patch[i] || patch[i].op == 'token') && i > -ctx - 1) {
+      run++;
+    } else {
+      patch.splice(i + ctx + 1, run - ctx * 2);
+      run = 0;
     }
   }
 

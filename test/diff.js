@@ -34,11 +34,7 @@ suite('diff', test => {
   test('equal', () => {
     assert.deepEqual(
       diff('one\ntwo\nthree\n', 'one\ntwo\nthree\n'),
-      [
-        { op: 'token', text: 'one\n', nlno: 0, olno: 0 },
-        { op: 'token', text: 'two\n', nlno: 1, olno: 1 },
-        { op: 'token', text: 'three\n', nlno: 2, olno: 2 },
-      ]
+      []
     );
   });
 
@@ -148,7 +144,6 @@ suite('diff', test => {
         { op: 'token', text: 'covering\n', nlno: 13, olno: 17 },
         { op: 'token', text: 'up\n', nlno: 14, olno: 18 },
         { op: 'token', text: 'the\n', nlno: 15, olno: 19 },
-        { op: 'token', text: 'details\n', nlno: 16, olno: 20 }
       ]
     );
   });

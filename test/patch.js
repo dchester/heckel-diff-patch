@@ -12,9 +12,47 @@ suite('patch', test => {
   test('insert middle', () => {
     assert.deepEqual(
       patch('one\nthree\n', [
+        { op: 'token', text: 'one\n', nlno: 0 },
         { op: 'ins', text: 'two\n', nlno: 1 },
+        { op: 'token', text: 'three\n', nlno: 2 },
       ]),
       'one\ntwo\nthree\n'
+    );
+  });
+
+  test('insert middle fuzz', () => {
+    assert.deepEqual(
+      patch('zero\none\nthree\n', [
+        { op: 'token', text: 'one\n', nlno: 0 },
+        { op: 'ins', text: 'two\n', nlno: 1 },
+        { op: 'token', text: 'three\n', nlno: 2 },
+      ]),
+      'zero\none\ntwo\nthree\n'
+    );
+  });
+
+  test('insert order swap fuzz', () => {
+    assert.deepEqual(
+      patch('zero\none\nthree\nten\nthirty\n', [
+        { op: 'token', text: 'ten\n', nlno: 0 },
+        { op: 'ins', text: 'twenty\n', nlno: 1 },
+        { op: 'token', text: 'thirty\n', nlno: 2 },
+        { op: 'token', text: 'one\n', nlno: 4 },
+        { op: 'ins', text: 'two\n', nlno: 5 },
+        { op: 'token', text: 'three\n', nlno: 6 },
+      ]),
+      'zero\none\ntwo\nthree\nten\ntwenty\nthirty\n'
+    );
+  });
+
+  test('duplicate lines', () => {
+    assert.deepEqual(
+      patch('one\nthree\none\nthree\n', [
+        { op: 'token', text: 'one\n', olno: 2 },
+        { op: 'ins', text: 'two\n', nlno: 3 },
+        { op: 'token', text: 'three\n', olno: 3 },
+      ]),
+      'one\nthree\none\ntwo\nthree\n'
     );
   });
 
