@@ -1,5 +1,4 @@
-function patch(o, diff, fuzz = 1) {
-  const boundary = /(?<=\n)/;
+function patch(o, diff, {boundary=/(?<=\n)/, fuzz=1}={}) {
 
   const ol = o.split(boundary).filter(x => x);
   const nl = [];

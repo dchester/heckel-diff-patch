@@ -1,7 +1,6 @@
-function diff(o, n) {
+function diff(o, n, {boundary=/(?<=\n)/}={}) {
 
   const ctx = 3;
-  const boundary = /(?<=\n)/;
 
   const nl = n.split(boundary).filter(x => x);
   const ol = o.split(boundary).filter(x => x);
