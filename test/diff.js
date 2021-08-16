@@ -5,7 +5,7 @@ import { suite } from './index.js';
 import path from 'path';
 const __dirname = path.resolve();
 
-import { diff, format } from '../index.js';
+import { diff } from '../index.js';
 
 suite('diff', test => {
 
