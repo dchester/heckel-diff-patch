@@ -7,7 +7,7 @@ Implementation of Paul Heckel's diff algorithm published in 1978
 
 Computes changes required to turn the string `old` into the string `new`.  Optionally takes a `boundary` regular expression by which to tokenize.
 
-```
+```javascript
 diff('one\nthree\ntwo\n', 'one\ntwo\nthree\n');
 
 // [
@@ -22,7 +22,7 @@ diff('one\nthree\ntwo\n', 'one\ntwo\nthree\n');
 
 Applies changes from `diff` to a string `old` to produce a `new` string. Optionally accepts a `boundary` regular expression by which to tokenize, and a `fuzz` factor indicating what percentage of the string may be traversed when finding matching context tokens.
 
-```
+```javascript
 patch(
   'one\nthree\ntwo\n',
   [
