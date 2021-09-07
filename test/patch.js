@@ -9,6 +9,23 @@ import { patch } from '../index.js';
 
 suite('patch', test => {
 
+  test('insert empty', () => {
+    assert.deepEqual(
+      patch('', [{ op: "ins", text: "one\n", nlno: 0 }]),
+      'one\n',
+    );
+  });
+
+  test('replace first line', () => {
+    assert.deepEqual(
+      patch('abc', [
+       { op: "del", text: "abc", olno: 0 },
+       { op: "ins", text: "abcde", nlno: 0 }
+      ]),
+      'abcde'
+    )
+  });
+
   test('insert middle', () => {
     assert.deepEqual(
       patch('one\nthree\n', [

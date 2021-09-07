@@ -57,25 +57,25 @@ function patch(o, diff, {boundary=/(?<=\n)/, fuzz=1}={}) {
   }
 
   let j = 0;
+  let i = 0;
   let applied = {};
 
-  OL: for (let i = 0; i < ol.length; i++) {
-    if (!_number(OA[i])) {
+  OL: do {
+    if (_object(OA[i])) {
       nl.push(ol[i]);
     } else {
-      j = OA[i];
-      while ((i <= NA[j] || NA[j] == undefined) && j < NA.length && !applied[j]) {
+      j = OA[i] || 0;
+      while ((i <= NA[j] || NA[j] == undefined) && j < diff.length && !applied[j]) {
         applied[j] = true;
         const d = diff[j++];
-        if (d.op == 'del') continue OL;
+        if (d.op == 'del') continue;
         if (d.op == 'ins') nl.push(d.text);
         if (d.op == 'token') nl.push(d.text);
       }
     }
-  }
+  } while (i++ < ol.length);
 
   return nl.join``;
-
 }
 
 export { patch }
@@ -88,3 +88,10 @@ function _number(x) {
   return typeof x == 'number';
 }
 
+function dumpster(str) {
+  let out = '';
+  for (var c of str) {
+    out += c.match(/[ -~]/) ? c : '\\u' + c.charCodeAt(0).toString(16).padStart(4, '0');
+  }
+  return out;
+}

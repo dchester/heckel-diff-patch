@@ -38,6 +38,16 @@ suite('diff', test => {
     );
   });
 
+  test('replace one line', () => {
+    assert.deepEqual(
+      diff('one two\u00a0', 'one two three'),
+      [
+        { op: 'del', text: 'one two\u00a0', olno: 0 },
+        { op: 'ins', text: 'one two three', nlno: 0 },
+      ]
+    );
+  });
+
   test('insert beginning', () => {
     assert.deepEqual(
       diff('two\nthree\n', 'one\ntwo\nthree\n'),
